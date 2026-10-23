@@ -8,7 +8,7 @@
         "pgvector",
         "postgres"
     ],
-    "homepage": "https://github.com/illuma-law/healthcheck-pgvector",
+    "homepage": "https://github.com/eloquage/healthcheck-pgvector",
     "license": "MIT",
     "authors": [
         {
