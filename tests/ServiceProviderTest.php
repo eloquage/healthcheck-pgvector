@@ -6,7 +6,7 @@ use IllumaLaw\HealthCheckPgvector\HealthcheckPgvectorServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 it('registers the config publish path under the correct tag', function () {
-    $provider = app()->getProvider(IllumaLaw\HealthCheckPgvector\HealthcheckPgvectorServiceProvider::class);
+    $provider = app()->getProvider(HealthcheckPgvectorServiceProvider::class);
     $source = dirname((new ReflectionClass($provider))->getFileName()).'/../config/healthcheck-pgvector.php';
 
     expect(ServiceProvider::pathsToPublish($provider::class, 'healthcheck-pgvector-config'))
