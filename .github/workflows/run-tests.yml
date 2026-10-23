@@ -46,7 +46,6 @@ jobs:
             database: pgsql
             os: ubuntu-latest
             stability: prefer-stable
-        exclude:
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.database }} - ${{ matrix.os }}
 
