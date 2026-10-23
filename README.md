@@ -1,10 +1,14 @@
 # Healthcheck pgvector for Laravel
 
+![pgvector PostgreSQL extension check](art/banner.png)
+
 [![Tests](https://github.com/eloquage/healthcheck-pgvector/actions/workflows/run-tests.yml/badge.svg)](https://github.com/eloquage/healthcheck-pgvector/actions)
 [![Packagist License](https://img.shields.io/badge/Licence-MIT-blue)](http://choosealicense.com/licenses/mit/)
 [![Latest Stable Version](https://img.shields.io/packagist/v/illuma-law/healthcheck-pgvector?label=Version)](https://packagist.org/packages/illuma-law/healthcheck-pgvector)
 
 A focused pgvector extension health check for Spatie's [Laravel Health](https://spatie.be/docs/laravel-health/v1/introduction) package.
+
+Requirements: PHP 8.3+, Laravel 12 or 13, and Spatie Laravel Health 1.39+. The check runs against a PostgreSQL connection and queries `pg_extension` for the installed `vector` extension.
 
 This package provides a simple, direct health check to verify that the `vector` extension (pgvector) is properly installed and active in your PostgreSQL database. This is critical for applications that rely on pgvector for storing AI embeddings and running semantic/similarity searches.
 
