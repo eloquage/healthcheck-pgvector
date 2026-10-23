@@ -2,53 +2,29 @@
 
 ![pgvector PostgreSQL extension check](art/banner.png)
 
-[![Tests](https://github.com/eloquage/healthcheck-pgvector/actions/workflows/run-tests.yml/badge.svg)](https://github.com/eloquage/healthcheck-pgvector/actions)
-[![Packagist License](https://img.shields.io/badge/Licence-MIT-blue)](http://choosealicense.com/licenses/mit/)
-[![Latest Stable Version](https://img.shields.io/packagist/v/illuma-law/healthcheck-pgvector?label=Version)](https://packagist.org/packages/illuma-law/healthcheck-pgvector)
+A [Spatie Laravel Health](https://spatie.be/docs/laravel-health) check that
+reports whether the `vector` extension is installed on your PostgreSQL
+connection.
 
-A focused pgvector extension health check for Spatie's [Laravel Health](https://spatie.be/docs/laravel-health/v1/introduction) package.
+[![Tests](https://github.com/eloquage/healthcheck-pgvector/actions/workflows/run-tests.yml/badge.svg)](https://github.com/eloquage/healthcheck-pgvector/actions/workflows/run-tests.yml)
+[![Latest Version](https://img.shields.io/packagist/v/illuma-law/healthcheck-pgvector)](https://packagist.org/packages/illuma-law/healthcheck-pgvector)
+[![License](https://img.shields.io/packagist/l/illuma-law/healthcheck-pgvector)](LICENSE.md)
 
-Requirements: PHP 8.3+, Laravel 12 or 13, and Spatie Laravel Health 1.39+. The check runs against a PostgreSQL connection and queries `pg_extension` for the installed `vector` extension.
+## Requirements
 
-This package provides a simple, direct health check to verify that the `vector` extension (pgvector) is properly installed and active in your PostgreSQL database. This is critical for applications that rely on pgvector for storing AI embeddings and running semantic/similarity searches.
+- PHP 8.3 or later
+- Laravel 12 or 13
+- Spatie Laravel Health 1.39 or later
+- A PostgreSQL database connection
 
-## Features
+## Install
 
-- **Version Detection:** Checks if the `vector` extension is enabled and reports the specific pgvector version installed.
-- **Configurable Strictness:** Choose whether a missing pgvector extension should return a Warning (degraded) or a Failure (broken) status for your application.
-- **Query Safety:** Safely handles database connection errors or missing tables, returning a failed state with the exception message instead of crashing the health check suite.
-
-## Installation
-
-Require this package with composer:
-
-```shell
+```bash
 composer require illuma-law/healthcheck-pgvector
 ```
 
-## Configuration
-
-You can publish the config file with:
-
-```shell
-php artisan vendor:publish --tag="healthcheck-pgvector-config"
-```
-
-The `healthcheck-pgvector.php` config file allows you to define whether the check is strictly required by default. 
-
-```php
-return [
-    // If true, the check will FAIL when the extension is missing.
-    // If false, it will generate a WARNING instead.
-    'required' => false,
-];
-```
-
-## Usage & Integration
-
-Register the check inside your application's health service provider (e.g. `AppServiceProvider` or a dedicated `HealthServiceProvider`), alongside your other Spatie Laravel Health checks:
-
-### Basic Registration
+Laravel discovers the service provider automatically. Register the check with
+your other health checks:
 
 ```php
 use IllumaLaw\HealthCheckPgvector\PgvectorExtensionCheck;
@@ -59,37 +35,34 @@ Health::checks([
 ]);
 ```
 
-### Fluent Configuration
+## Configure
 
-You can override the config file's default strictness on a per-check basis using the fluent `required()` method. 
+The check looks up the installed `vector` extension and reports its version.
+When the extension is missing, the result is a warning by default. Require it
+with the environment variable or published configuration:
+
+```dotenv
+HEALTH_PGVECTOR_REQUIRED=true
+```
+
+```bash
+php artisan vendor:publish --tag=healthcheck-pgvector-config
+```
+
+You can override the default for one check:
 
 ```php
-use IllumaLaw\HealthCheckPgvector\PgvectorExtensionCheck;
-use Spatie\Health\Facades\Health;
-
-Health::checks([
-    // Make the health check FAIL immediately if pgvector is missing
-    PgvectorExtensionCheck::new()->required(true),
-]);
+PgvectorExtensionCheck::new()->required();
 ```
 
-### Expected Result States
+Database query errors always return a failed result.
 
-The check interacts with the Spatie Health dashboard and JSON endpoints using these states:
+## Test
 
-- **Ok:** The pgvector extension is installed. The short summary and meta data will include the exact installed version (e.g. `0.7.0`).
-- **Warning:** pgvector is missing, but `required` is set to `false`.
-- **Failed:** pgvector is missing and `required` is set to `true`.
-- **Failed (Exception):** The database query to `pg_extension` throws an exception (e.g., database connection down).
-
-## Testing
-
-Run the test suite:
-
-```shell
+```bash
 composer test
+composer analyse
+vendor/bin/pint --test
 ```
 
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+MIT licensed. See [LICENSE.md](LICENSE.md).
