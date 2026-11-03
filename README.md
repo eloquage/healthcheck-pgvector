@@ -7,8 +7,8 @@ reports whether the `vector` extension is installed on your PostgreSQL
 connection.
 
 [![Tests](https://github.com/eloquage/healthcheck-pgvector/actions/workflows/run-tests.yml/badge.svg)](https://github.com/eloquage/healthcheck-pgvector/actions/workflows/run-tests.yml)
-[![Latest Version](https://img.shields.io/packagist/v/illuma-law/healthcheck-pgvector)](https://packagist.org/packages/illuma-law/healthcheck-pgvector)
-[![License](https://img.shields.io/packagist/l/illuma-law/healthcheck-pgvector)](LICENSE.md)
+[![Latest Version](https://img.shields.io/packagist/v/eloquage/healthcheck-pgvector)](https://packagist.org/packages/eloquage/healthcheck-pgvector)
+[![License](https://img.shields.io/packagist/l/eloquage/healthcheck-pgvector)](LICENSE.md)
 
 ## Requirements
 
@@ -20,7 +20,7 @@ connection.
 ## Install
 
 ```bash
-composer require illuma-law/healthcheck-pgvector
+composer require eloquage/healthcheck-pgvector
 ```
 
 Laravel discovers the service provider automatically. Register the check with

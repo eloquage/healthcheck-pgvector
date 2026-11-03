@@ -1,4 +1,4 @@
-# illuma-law/healthcheck-pgvector
+# eloquage/healthcheck-pgvector
 
 Checks if the `vector` extension (pgvector) is enabled and active in PostgreSQL.
 

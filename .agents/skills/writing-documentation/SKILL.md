@@ -7,7 +7,7 @@ metadata:
 
 # Writing and documentation
 
-Write documentation for `illuma-law/healthcheck-pgvector` (Focused pgvector extension health check for Spatie's Laravel Health package.) that lets the intended reader complete a concrete task.
+Write documentation for `eloquage/healthcheck-pgvector` (Focused pgvector extension health check for Spatie's Laravel Health package.) that lets the intended reader complete a concrete task.
 
 ## Source and structure
 

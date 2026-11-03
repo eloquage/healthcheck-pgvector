@@ -7,7 +7,7 @@ metadata:
 
 # GitHub README
 
-For `illuma-law/healthcheck-pgvector` (Focused pgvector extension health check for Spatie's Laravel Health package.), make the README useful to a developer deciding whether to install the package and then trying it in a real application.
+For `eloquage/healthcheck-pgvector` (Focused pgvector extension health check for Spatie's Laravel Health package.), make the README useful to a developer deciding whether to install the package and then trying it in a real application.
 
 ## Ground every claim
 
